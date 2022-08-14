@@ -25,14 +25,16 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.3
   dio: ^4.0.6
+  json_serializable: ^6.2.0
+  build_runner: ^2.1.11
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  json_serializable: ^3.3.0
-  build_runner: ^1.10.0
+ 
+  
 
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/b&b_la_fontaine_1.jpg
+    - assets/images/

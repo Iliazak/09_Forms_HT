@@ -93,7 +93,12 @@ class _HomeViewState extends State<HomeView> {
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
-                                    children: [Text(user.name)],
+                                    children: [
+                                      Text(user.name),
+                                      TextButton(
+                                          onPressed: () {},
+                                          child: Text('Подробнее'))
+                                    ],
                                   ),
                                 ),
                               ],
@@ -104,8 +109,33 @@ class _HomeViewState extends State<HomeView> {
                     : GridView.count(
                         crossAxisCount: 2,
                         children: users.map((user) {
-                          return Container(
-                            child: Text(user.name),
+                          return Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 2),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Column(
+                                children: [
+                                  ClipRRect(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(15),
+                                          topRight: Radius.circular(15)),
+                                      child: Image.asset(
+                                          "assets/images/${user.poster}")),
+                                  Column(
+                                    // mainAxisAlignment:
+                                    //     // MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Text(user.name),
+                                      Padding(padding: EdgeInsets.all(1)),
+                                      TextButton(
+                                          onPressed: () {},
+                                          child: Text('Подробнее'))
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
                           );
                         }).toList()));
   }

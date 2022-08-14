@@ -65,7 +65,7 @@ packages:
     source: hosted
     version: "1.4.4"
   build_runner:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: build_runner
       url: "https://pub.dartlang.org"
