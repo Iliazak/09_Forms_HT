@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotels/views/home_view.dart';
+import 'package:hotels/views/detail_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (BuildContext context) => HomeView(),
+        '/DetailPage': (context) => DetailPage(),
       },
     );
   }

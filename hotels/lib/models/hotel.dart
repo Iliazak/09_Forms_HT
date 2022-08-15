@@ -8,7 +8,7 @@ class HotelPreview {
   final String name;
   final String poster;
 
-  HotelPreview({this.uuid, this.name, this.poster});
+  HotelPreview({required this.uuid, required this.name, required this.poster});
 
   factory HotelPreview.fromJson(Map<String, dynamic> json) =>
       _$HotelPreviewFromJson(json);
@@ -24,18 +24,17 @@ class ItemDetail {
   final String price;
   final String rating;
   final ItemServices services;
-  // final <List> String photos;
+  final List<String> photos;
 
-  ItemDetail({
-    this.uuid,
-    this.name,
-    this.poster,
-    this.address,
-    this.price,
-    this.rating,
-    this.services,
-    // this.photos
-  });
+  ItemDetail(
+      {required this.uuid,
+      required this.name,
+      required this.poster,
+      required this.address,
+      required this.price,
+      required this.rating,
+      required this.services,
+      required this.photos});
 
   factory ItemDetail.fromJson(Map<String, dynamic> json) =>
       _$ItemDetailFromJson(json);
@@ -51,7 +50,11 @@ class ItemAdress {
   final ItemCoords coords;
 
   ItemAdress(
-      {this.country, this.street, this.city, this.zip_code, this.coords});
+      {required this.country,
+      required this.street,
+      required this.city,
+      required this.zip_code,
+      required this.coords});
 
   factory ItemAdress.fromJson(Map<String, dynamic> json) =>
       _$ItemAdressFromJson(json);
@@ -63,7 +66,7 @@ class ItemCoords {
   final double lat;
   final double lan;
 
-  ItemCoords({this.lan, this.lat});
+  ItemCoords({required this.lan, required this.lat});
 
   factory ItemCoords.fromJson(Map<String, dynamic> json) =>
       _$ItemCoordsFromJson(json);
@@ -75,8 +78,8 @@ class ItemServices {
   final List<String> free;
   final List<String> paid;
   ItemServices({
-    this.free,
-    this.paid,
+    required this.free,
+    required this.paid,
   });
   factory ItemServices.fromJson(Map<String, dynamic> json) =>
       _$ItemServicesFromJson(json);

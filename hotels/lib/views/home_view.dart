@@ -4,7 +4,7 @@ import 'package:hotels/models/hotel.dart';
 import 'package:dio/dio.dart';
 
 class HomeView extends StatefulWidget {
-  HomeView({Key key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
 
   @override
   _HomeViewState createState() => _HomeViewState();
@@ -14,8 +14,8 @@ class _HomeViewState extends State<HomeView> {
   bool isListView = true;
   bool isLoading = false;
   bool hasError = false;
-  String errorMassage;
-  List<HotelPreview> users;
+  late String errorMassage;
+  late List<HotelPreview> users;
   Dio _dio = Dio();
 
   @override
@@ -36,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
           .toList();
     } on DioError catch (e) {
       print(e.error);
-      errorMassage = e.response.data['massage'];
+      errorMassage = e.response!.data['massage'];
       setState(() {
         hasError = true;
       });
@@ -95,8 +95,11 @@ class _HomeViewState extends State<HomeView> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(user.name),
-                                      TextButton(
-                                          onPressed: () {},
+                                      ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pushNamed(
+                                                context, '/DetailPage');
+                                          },
                                           child: Text('Подробнее'))
                                     ],
                                   ),
@@ -110,29 +113,36 @@ class _HomeViewState extends State<HomeView> {
                         crossAxisCount: 2,
                         children: users.map((user) {
                           return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 2),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
                             child: Card(
+                              margin: const EdgeInsets.symmetric(vertical: 5),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),
                               child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   ClipRRect(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(15),
-                                          topRight: Radius.circular(15)),
-                                      child: Image.asset(
-                                          "assets/images/${user.poster}")),
-                                  Column(
-                                    // mainAxisAlignment:
-                                    //     // MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Text(user.name),
-                                      Padding(padding: EdgeInsets.all(1)),
-                                      TextButton(
-                                          onPressed: () {},
-                                          child: Text('Подробнее'))
-                                    ],
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(15),
+                                        topRight: Radius.circular(15)),
+                                    child: Image.asset(
+                                        "assets/images/${user.poster}"),
                                   ),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.only(
+                                        bottomRight: Radius.circular(15),
+                                        bottomLeft: Radius.circular(15),
+                                      ),
+                                      child: ElevatedButton(
+                                        onPressed: () {},
+                                        child: Text('Подробнее'),
+                                      ),
+                                    ),
+                                  )
                                 ],
                               ),
                             ),
