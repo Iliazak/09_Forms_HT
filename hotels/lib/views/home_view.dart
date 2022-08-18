@@ -96,7 +96,7 @@ class _HomeViewState extends State<HomeView> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(user.name),
+                                      Text('${user.name}'),
                                       ElevatedButton(
                                           onPressed: () {
                                             Navigator.push(

@@ -2,39 +2,39 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'hotel.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class HotelPreview {
-  final String uuid;
-  final String name;
-  final String poster;
+  final String? uuid;
+  final String? name;
+  final String? poster;
 
-  HotelPreview({required this.uuid, required this.name, required this.poster});
+  HotelPreview({this.uuid, this.name, this.poster});
 
   factory HotelPreview.fromJson(Map<String, dynamic> json) =>
       _$HotelPreviewFromJson(json);
   Map<String, dynamic> toJson() => _$HotelPreviewToJson(this);
 }
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class ItemDetail {
-  final String uuid;
-  final String name;
-  final String poster;
-  final ItemAdress address;
-  final String price;
-  final String rating;
-  final ItemServices services;
-  final List<String> photos;
+  final String? uuid;
+  final String? name;
+  final String? poster;
+  final ItemAdress? address;
+  final String? price;
+  final String? rating;
+  final ItemServices? services;
+  final List<String>? photos;
 
   ItemDetail(
-      {required this.uuid,
-      required this.name,
-      required this.poster,
-      required this.address,
-      required this.price,
-      required this.rating,
-      required this.services,
-      required this.photos});
+      {this.uuid,
+      this.name,
+      this.poster,
+      this.address,
+      this.price,
+      this.rating,
+      this.services,
+      this.photos});
 
   factory ItemDetail.fromJson(Map<String, dynamic> json) =>
       _$ItemDetailFromJson(json);
@@ -43,18 +43,13 @@ class ItemDetail {
 
 @JsonSerializable()
 class ItemAdress {
-  final String country;
-  final String street;
-  final String city;
-  final int zip_code;
-  final ItemCoords coords;
+  final String? country;
+  final String? street;
+  final String? city;
+  final int? zipCode;
+  final ItemCoords? coords;
 
-  ItemAdress(
-      {required this.country,
-      required this.street,
-      required this.city,
-      required this.zip_code,
-      required this.coords});
+  ItemAdress({this.country, this.street, this.city, this.zipCode, this.coords});
 
   factory ItemAdress.fromJson(Map<String, dynamic> json) =>
       _$ItemAdressFromJson(json);
@@ -63,10 +58,10 @@ class ItemAdress {
 
 @JsonSerializable()
 class ItemCoords {
-  final double lat;
-  final double lan;
+  final double? lat;
+  final double? lan;
 
-  ItemCoords({required this.lan, required this.lat});
+  ItemCoords({this.lan, this.lat});
 
   factory ItemCoords.fromJson(Map<String, dynamic> json) =>
       _$ItemCoordsFromJson(json);
@@ -75,11 +70,11 @@ class ItemCoords {
 
 @JsonSerializable()
 class ItemServices {
-  final List<String> free;
-  final List<String> paid;
+  final List<String>? free;
+  final List<String>? paid;
   ItemServices({
-    required this.free,
-    required this.paid,
+    this.free,
+    this.paid,
   });
   factory ItemServices.fromJson(Map<String, dynamic> json) =>
       _$ItemServicesFromJson(json);

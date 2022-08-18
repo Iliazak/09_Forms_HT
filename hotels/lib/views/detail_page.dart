@@ -19,7 +19,6 @@ class _DetailPageState extends State<DetailPage> {
   bool isLoading = false;
   bool hasError = false;
   var itemDetail;
-  late List<ItemDetail> list;
   Dio _dio = Dio();
 
   @override
@@ -35,10 +34,9 @@ class _DetailPageState extends State<DetailPage> {
     try {
       final responce = await _dio.get('https://run.mocky.io/v3/${widget.uuid}');
       if (responce.statusCode == 200) {
-        final Map<String, dynamic> list = responce.data
-            .map<ItemDetail>((detail) => ItemDetail.fromJson(detail))
-            .toList();
-        print(list);
+        final Map<String, dynamic> jsonMap = responce.data;
+        final ItemDetail itemDetail = ItemDetail.fromJson(jsonMap);
+        print(itemDetail);
       } else {
         hasError = true;
       }
@@ -54,36 +52,36 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: isLoading
-          ? Center(child: CircularProgressIndicator())
-          : hasError
-              ? Center(
-                  child: Text('Контент временно недоступен'),
-                )
-              : SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      CarouselSlider(
-                        options: CarouselOptions(height: 200),
-                        items: list.map((detail) {
-                          return Builder(
-                            builder: (BuildContext context) {
-                              return Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 12),
-                                  color: Colors.grey,
-                                  child: Image.asset(
-                                    "assets/images/${detail.poster}",
-                                    fit: BoxFit.cover,
-                                  ));
-                            },
-                          );
-                        }).toList(),
-                      )
-                    ],
-                  ),
-                ),
-    );
+        // appBar: AppBar(),
+        // body: isLoading
+        //     ? Center(child: CircularProgressIndicator())
+        //     : hasError
+        //         ? Center(
+        //             child: Text('Контент временно недоступен'),
+        //           )
+        //         : SingleChildScrollView(
+        //             child: Column(
+        //               children: [
+        //                 CarouselSlider(
+        //                   options: CarouselOptions(height: 200),
+        //                   items: itemDetail.map((itemDetail) {
+        //                     return Builder(
+        //                       builder: (BuildContext context) {
+        //                         return Container(
+        //                             margin: const EdgeInsets.symmetric(
+        //                                 horizontal: 12),
+        //                             color: Colors.grey,
+        //                             child: Image.asset(
+        //                               "assets/images/${itemDetail.poster}",
+        //                               fit: BoxFit.cover,
+        //                             ));
+        //                       },
+        //                     );
+        //                   }).toList(),
+        //                 )
+        //               ],
+        //             ),
+        //           ),
+        );
   }
 }
