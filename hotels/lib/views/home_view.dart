@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hotels/models/hotel.dart';
-import 'package:dio/dio.dart';
+import 'package:hotels/views/detail_page.dart';
 
 class HomeView extends StatefulWidget {
-  HomeView({Key? key}) : super(key: key);
+  HomeView({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _HomeViewState createState() => _HomeViewState();
@@ -97,8 +99,13 @@ class _HomeViewState extends State<HomeView> {
                                       Text(user.name),
                                       ElevatedButton(
                                           onPressed: () {
-                                            Navigator.pushNamed(
-                                                context, '/DetailPage');
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DetailPage(
+                                                          uuid: user.uuid),
+                                                ));
                                           },
                                           child: Text('Подробнее'))
                                     ],

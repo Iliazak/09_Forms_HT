@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (BuildContext context) => HomeView(),
-        '/DetailPage': (context) => DetailPage(),
       },
     );
   }
