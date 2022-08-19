@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hotels/models/hotel.dart';
@@ -19,6 +21,7 @@ class _DetailPageState extends State<DetailPage> {
   bool isLoading = false;
   bool hasError = false;
   var itemDetail;
+  late List<ItemDetail> items;
   Dio _dio = Dio();
 
   @override
@@ -37,7 +40,7 @@ class _DetailPageState extends State<DetailPage> {
       if (responce.statusCode == 200) {
         final Map<String, dynamic> jsonMap = responce.data;
         final ItemDetail itemDetail = ItemDetail.fromJson(jsonMap);
-        print(itemDetail);
+        inspect(itemDetail);
       } else {
         hasError = true;
       }
@@ -53,37 +56,40 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: isLoading
-          ? Center(child: CircularProgressIndicator())
-          : hasError
-              ? Center(
-                  child: Text('Контент временно недоступен'),
-                )
-              : SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Text('Страна: ${itemDetail['uuid']}')
-                      // CarouselSlider(
-                      //   options: CarouselOptions(height: 200),
-                      //   items: itemDetail.map((itemDetail) {
-                      //     return Builder(
-                      //       builder: (BuildContext context) {
-                      //         return Container(
-                      //             margin: const EdgeInsets.symmetric(
-                      //                 horizontal: 12),
-                      //             color: Colors.grey,
-                      //             child: Image.asset(
-                      //               "assets/images/${itemDetail.poster}",
-                      //               fit: BoxFit.cover,
-                      //             ));
-                      //       },
-                      //     );
-                      //   }).toList(),
-                      // )
-                    ],
-                  ),
-                ),
+      appBar: AppBar(
+          title: itemDetail.map((items) {
+        return Text('${itemDetail.name}');
+      }).toList()),
+      // body: isLoading
+      //     ? Center(child: CircularProgressIndicator())
+      //     : hasError
+      //         ? Center(
+      //             child: Text('Контент временно недоступен'),
+      //           )
+      //         : SingleChildScrollView(
+      //             child: Column(
+      //               children: [
+      //                 Text('${itemDetail.name}')
+      // CarouselSlider(
+      //   options: CarouselOptions(height: 200),
+      //   items: itemDetail.map((itemDetail) {
+      //     return Builder(
+      //       builder: (BuildContext context) {
+      //         return Container(
+      //             margin: const EdgeInsets.symmetric(
+      //                 horizontal: 12),
+      //             color: Colors.grey,
+      //             child: Image.asset(
+      //               "assets/images/${itemDetail.poster}",
+      //               fit: BoxFit.cover,
+      //             ));
+      //       },
+      //     );
+      //   }).toList(),
+      // )
+      //   ],
+      // ),
+      //           ),
     );
   }
 }
