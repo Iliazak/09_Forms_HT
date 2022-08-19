@@ -39,7 +39,7 @@ class _DetailPageState extends State<DetailPage> {
       // print(responce.data);
       if (responce.statusCode == 200) {
         final Map<String, dynamic> jsonMap = responce.data;
-        final ItemDetail itemDetail = ItemDetail.fromJson(jsonMap);
+        itemDetail = ItemDetail.fromJson(jsonMap);
         inspect(itemDetail);
       } else {
         hasError = true;
@@ -56,10 +56,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: itemDetail.map((items) {
-        return Text('${itemDetail.name}');
-      }).toList()),
+      appBar: AppBar(title: Text('${itemDetail['name']}')),
       // body: isLoading
       //     ? Center(child: CircularProgressIndicator())
       //     : hasError
