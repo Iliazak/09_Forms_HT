@@ -29,8 +29,8 @@ ItemDetail _$ItemDetailFromJson(Map<String, dynamic> json) {
     address: json['address'] == null
         ? null
         : ItemAdress.fromJson(json['address'] as Map<String, dynamic>),
-    price: json['price'] as String?,
-    rating: json['rating'] as String?,
+    price: json['price'] as num?,
+    rating: json['rating'] as num?,
     services: json['services'] == null
         ? null
         : ItemServices.fromJson(json['services'] as Map<String, dynamic>),

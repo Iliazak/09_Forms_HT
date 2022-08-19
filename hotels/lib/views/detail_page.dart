@@ -33,6 +33,7 @@ class _DetailPageState extends State<DetailPage> {
     });
     try {
       final responce = await _dio.get('https://run.mocky.io/v3/${widget.uuid}');
+      // print(responce.data);
       if (responce.statusCode == 200) {
         final Map<String, dynamic> jsonMap = responce.data;
         final ItemDetail itemDetail = ItemDetail.fromJson(jsonMap);
@@ -52,36 +53,37 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(),
-        // body: isLoading
-        //     ? Center(child: CircularProgressIndicator())
-        //     : hasError
-        //         ? Center(
-        //             child: Text('Контент временно недоступен'),
-        //           )
-        //         : SingleChildScrollView(
-        //             child: Column(
-        //               children: [
-        //                 CarouselSlider(
-        //                   options: CarouselOptions(height: 200),
-        //                   items: itemDetail.map((itemDetail) {
-        //                     return Builder(
-        //                       builder: (BuildContext context) {
-        //                         return Container(
-        //                             margin: const EdgeInsets.symmetric(
-        //                                 horizontal: 12),
-        //                             color: Colors.grey,
-        //                             child: Image.asset(
-        //                               "assets/images/${itemDetail.poster}",
-        //                               fit: BoxFit.cover,
-        //                             ));
-        //                       },
-        //                     );
-        //                   }).toList(),
-        //                 )
-        //               ],
-        //             ),
-        //           ),
-        );
+      appBar: AppBar(),
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : hasError
+              ? Center(
+                  child: Text('Контент временно недоступен'),
+                )
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Text('Страна: ${itemDetail['uuid']}')
+                      // CarouselSlider(
+                      //   options: CarouselOptions(height: 200),
+                      //   items: itemDetail.map((itemDetail) {
+                      //     return Builder(
+                      //       builder: (BuildContext context) {
+                      //         return Container(
+                      //             margin: const EdgeInsets.symmetric(
+                      //                 horizontal: 12),
+                      //             color: Colors.grey,
+                      //             child: Image.asset(
+                      //               "assets/images/${itemDetail.poster}",
+                      //               fit: BoxFit.cover,
+                      //             ));
+                      //       },
+                      //     );
+                      //   }).toList(),
+                      // )
+                    ],
+                  ),
+                ),
+    );
   }
 }

@@ -21,8 +21,8 @@ class ItemDetail {
   final String? name;
   final String? poster;
   final ItemAdress? address;
-  final String? price;
-  final String? rating;
+  final num? price;
+  final num? rating;
   final ItemServices? services;
   final List<String>? photos;
 
