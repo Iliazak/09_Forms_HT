@@ -103,7 +103,7 @@ class _HomeViewState extends State<HomeView> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      DetailPage(
+                                                      Detail_Page(
                                                           uuid: user.uuid),
                                                 ));
                                           },
