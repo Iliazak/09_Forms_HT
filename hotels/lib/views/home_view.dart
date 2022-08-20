@@ -135,7 +135,8 @@ class _HomeViewState extends State<HomeView> {
                                         topLeft: Radius.circular(15),
                                         topRight: Radius.circular(15)),
                                     child: Image.asset(
-                                        "assets/images/${user.poster}"),
+                                        "assets/images/${user.poster}",
+                                        fit: BoxFit.contain),
                                   ),
                                   SizedBox(
                                     width: double.infinity,
@@ -145,7 +146,15 @@ class _HomeViewState extends State<HomeView> {
                                         bottomLeft: Radius.circular(15),
                                       ),
                                       child: ElevatedButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Detail_Page(
+                                                        uuid: user.uuid),
+                                              ));
+                                        },
                                         child: Text('Подробнее'),
                                       ),
                                     ),

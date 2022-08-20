@@ -45,8 +45,7 @@ class _DetailPageState extends State<Detail_Page> {
         hasError = true;
       }
     } on DioError catch (e) {
-      throw Exception(e);
-      // hasError = true;
+      hasError = true;
     }
     setState(() {
       isLoading = false;
@@ -66,7 +65,18 @@ class _DetailPageState extends State<Detail_Page> {
               : SingleChildScrollView(
                   child: Column(
                     children: [
-                      Image.asset("assets/images/${itemDetail.poster}"),
+                      CarouselSlider(
+                        options: CarouselOptions(height: 200),
+                        items: [itemDetail.photos].map<Widget>((photos) {
+                          return Builder(
+                            builder: (BuildContext context) {
+                              return Container(
+                                  child: Image.asset(
+                                      'assets/images/${itemDetail.photos}'));
+                            },
+                          );
+                        }).toList(),
+                      ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
                         child: Column(
