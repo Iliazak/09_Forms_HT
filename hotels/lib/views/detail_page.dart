@@ -55,7 +55,7 @@ class _DetailPageState extends State<Detail_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("${itemDetail.name}")),
+      appBar: AppBar(title: Text('${itemDetail.poster}')),
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : hasError
@@ -71,7 +71,8 @@ class _DetailPageState extends State<Detail_Page> {
                           return Builder(
                             builder: (BuildContext context) {
                               return Container(
-                                  child: Text("${itemDetail.photos}"));
+                                  child:
+                                      Image.asset('assets/images/${photos}'));
                             },
                           );
                         }).toList(),

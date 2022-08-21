@@ -134,9 +134,11 @@ class _HomeViewState extends State<HomeView> {
                                     borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(15),
                                         topRight: Radius.circular(15)),
-                                    child: Image.asset(
-                                        "assets/images/${user.poster}",
-                                        fit: BoxFit.contain),
+                                    child: Container(
+                                      child: Image.asset(
+                                          "assets/images/${user.poster}",
+                                          fit: BoxFit.cover),
+                                    ),
                                   ),
                                   SizedBox(
                                     width: double.infinity,
